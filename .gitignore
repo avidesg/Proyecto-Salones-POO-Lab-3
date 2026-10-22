@@ -1,0 +1,6 @@
+target/
+.DS_Store
+nbproject/private/
+src/main/resources/hibernate.cfg.xml
+error-arranque.txt
+

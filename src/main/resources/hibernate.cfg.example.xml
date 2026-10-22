@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-configuration PUBLIC
+    "-//Hibernate/Hibernate Configuration DTD 3.0//EN"
+    "https://hibernate.org/dtd/hibernate-configuration-3.0.dtd">
+
+<hibernate-configuration>
+    <session-factory>
+
+        <!-- Conexión a la base de datos -->
+        <property name="hibernate.connection.driver_class">com.mysql.cj.jdbc.Driver</property>
+
+        <property name="hibernate.connection.url">jdbc:mysql://localhost:3306/bd_login?useSSL=false&amp;serverTimezone=America/El_Salvador</property>
+
+        <property name="hibernate.connection.username">TU_USUARIO_MYSQL</property>
+        <property name="hibernate.connection.password">TU_CLAVE_MYSQL</property>
+
+        <!-- Mostrar consultas en la consola -->
+        <property name="hibernate.show_sql">true</property>
+        <property name="hibernate.format_sql">true</property>
+
+        <!-- Crear o actualizar tablas -->
+        <property name="hibernate.hbm2ddl.auto">update</property>
+
+        <!-- Clase que representa la tabla de usuarios -->
+        <mapping class="edu.ufg.aulas.proyectoLaboratorio3.entidades.Usuario"/>
+
+    </session-factory>
+</hibernate-configuration>
