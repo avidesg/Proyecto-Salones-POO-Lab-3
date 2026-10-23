@@ -2,6 +2,7 @@ package edu.ufg.aulas.proyectoLaboratorio3.dao;
 
 import edu.ufg.aulas.proyectoLaboratorio3.entidades.Usuario;
 import edu.ufg.aulas.proyectoLaboratorio3.util.HibernateUtil;
+import edu.ufg.aulas.proyectoLaboratorio3.util.HashUtil;
 import org.hibernate.Session;
 
 public class UsuarioDAO {
@@ -16,7 +17,7 @@ public class UsuarioDAO {
 
             return sesion.createQuery(hql, Usuario.class)
                     .setParameter("correo", correo)
-                    .setParameter("clave", clave)
+                    .setParameter("clave", HashUtil.md5(clave))
                     .uniqueResultOptional()
                     .orElse(null);
         }
