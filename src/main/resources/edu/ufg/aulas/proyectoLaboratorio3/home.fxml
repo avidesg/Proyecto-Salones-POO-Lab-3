@@ -1,15 +1,176 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Hyperlink?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.Tooltip?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
 
-<VBox alignment="CENTER" spacing="20.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.ufg.aulas.proyectoLaboratorio3.HomeController">
-    <children>
-        <Label fx:id="lblBienvenida" text="Bienvenido">
-            <style>-fx-font-size: 20px;</style>
-        </Label>
-        <Hyperlink onAction="#cerrarSesion"
-                   text="Cerrar sesión"/>
-    </children>
-</VBox>
+<BorderPane prefHeight="660.0" prefWidth="860.0" styleClass="home-view"
+            stylesheets="@home.css"
+            xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="edu.ufg.aulas.proyectoLaboratorio3.HomeController">
+    <top>
+        <HBox alignment="CENTER_LEFT" spacing="12.0" styleClass="header">
+            <padding>
+                <Insets bottom="14.0" left="24.0" right="24.0" top="14.0"/>
+            </padding>
+            <children>
+                <Label alignment="CENTER" minHeight="40.0" minWidth="44.0"
+                       styleClass="brand-mark" text="UFG"/>
+                <VBox alignment="CENTER_LEFT" spacing="2.0">
+                    <children>
+                        <Label styleClass="header-title" text="Gestión de aulas"/>
+                        <Label styleClass="header-subtitle" text="Espacios académicos"/>
+                    </children>
+                </VBox>
+                <Region HBox.hgrow="ALWAYS"/>
+                <Label fx:id="lblBienvenida" maxWidth="200.0" minWidth="0.0"
+                       styleClass="welcome-label" text="Bienvenido" wrapText="true"/>
+                <Hyperlink fx:id="btnCerrarSesion" minWidth="96.0"
+                           onAction="#cerrarSesion" styleClass="logout-link"
+                           text="Cerrar sesión"/>
+            </children>
+        </HBox>
+    </top>
+    <center>
+        <ScrollPane fitToWidth="true" focusTraversable="false" hbarPolicy="NEVER"
+                    styleClass="page-scroll">
+            <content>
+                <StackPane alignment="TOP_CENTER">
+                    <padding>
+                        <Insets bottom="24.0" left="24.0" right="24.0" top="24.0"/>
+                    </padding>
+                    <children>
+                        <VBox maxWidth="800.0" minWidth="0.0" spacing="20.0">
+                            <children>
+                                <VBox spacing="5.0">
+                                    <children>
+                                        <Label styleClass="page-title" text="Registrar aula"/>
+                                        <Label styleClass="page-description"
+                                               text="Completa los datos del espacio académico."
+                                               wrapText="true"/>
+                                    </children>
+                                </VBox>
+                                <VBox minWidth="0.0" spacing="18.0" styleClass="form-card">
+                                    <padding>
+                                        <Insets bottom="20.0" left="20.0" right="20.0" top="20.0"/>
+                                    </padding>
+                                    <children>
+                                        <HBox alignment="CENTER_LEFT" spacing="12.0">
+                                            <children>
+                                                <Label styleClass="section-title" text="Información del aula"/>
+                                                <Region HBox.hgrow="ALWAYS"/>
+                                                <Label styleClass="required-note" text="* Obligatorio"/>
+                                            </children>
+                                        </HBox>
+                                        <GridPane hgap="18.0" vgap="16.0">
+                                            <columnConstraints>
+                                                <ColumnConstraints hgrow="ALWAYS" minWidth="0.0" percentWidth="50.0"/>
+                                                <ColumnConstraints hgrow="ALWAYS" minWidth="0.0" percentWidth="50.0"/>
+                                            </columnConstraints>
+                                            <children>
+                                                <VBox minWidth="0.0" spacing="6.0"
+                                                      GridPane.columnIndex="0" GridPane.rowIndex="0">
+                                                    <children>
+                                                        <Label styleClass="field-label" text="Nombre del aula *"/>
+                                                        <TextField fx:id="txtNombre" accessibleText="Nombre del aula, obligatorio"
+                                                                   minWidth="0.0" promptText="Ej. B-204"/>
+                                                    </children>
+                                                </VBox>
+                                                <VBox minWidth="0.0" spacing="6.0"
+                                                      GridPane.columnIndex="1" GridPane.rowIndex="0">
+                                                    <children>
+                                                        <Label styleClass="field-label" text="Edificio *"/>
+                                                        <TextField fx:id="txtEdificio" accessibleText="Edificio, obligatorio"
+                                                                   minWidth="0.0" promptText="Ej. Edificio B"/>
+                                                    </children>
+                                                </VBox>
+                                                <VBox minWidth="0.0" spacing="6.0"
+                                                      GridPane.columnIndex="0" GridPane.rowIndex="1">
+                                                    <children>
+                                                        <Label styleClass="field-label" text="Planta *"/>
+                                                        <ComboBox fx:id="cmbPlanta" accessibleText="Planta, obligatorio"
+                                                                  maxWidth="Infinity" minWidth="0.0"
+                                                                  promptText="Selecciona la planta" visibleRowCount="6">
+                                                            <tooltip>
+                                                                <Tooltip text="Selecciona un nivel mayor que cero."/>
+                                                            </tooltip>
+                                                        </ComboBox>
+                                                    </children>
+                                                </VBox>
+                                                <VBox minWidth="0.0" spacing="6.0"
+                                                      GridPane.columnIndex="1" GridPane.rowIndex="1">
+                                                    <children>
+                                                        <Label styleClass="field-label" text="Capacidad *"/>
+                                                        <TextField fx:id="txtCapacidad" accessibleText="Capacidad, obligatorio"
+                                                                   minWidth="0.0" promptText="Ej. 35 personas">
+                                                            <tooltip>
+                                                                <Tooltip text="Ingresa un número entero mayor que cero, por ejemplo: 35."/>
+                                                            </tooltip>
+                                                        </TextField>
+                                                    </children>
+                                                </VBox>
+                                                <VBox minWidth="0.0" spacing="6.0"
+                                                      GridPane.columnIndex="0" GridPane.rowIndex="2">
+                                                    <children>
+                                                        <Label styleClass="field-label" text="Tipo de aula *"/>
+                                                        <ComboBox fx:id="cmbTipoAula" accessibleText="Tipo de aula, obligatorio"
+                                                                  maxWidth="Infinity" minWidth="0.0"
+                                                                  promptText="Selecciona el tipo" visibleRowCount="6"/>
+                                                    </children>
+                                                </VBox>
+                                                <VBox minWidth="0.0" spacing="6.0"
+                                                      GridPane.columnIndex="1" GridPane.rowIndex="2">
+                                                    <children>
+                                                        <Label styleClass="field-label" text="Estado *"/>
+                                                        <ComboBox fx:id="cmbEstado" accessibleText="Estado del aula, obligatorio"
+                                                                  maxWidth="Infinity" minWidth="0.0"
+                                                                  promptText="Selecciona el estado" visibleRowCount="6"/>
+                                                    </children>
+                                                </VBox>
+                                                <VBox minWidth="0.0" spacing="6.0"
+                                                      GridPane.columnIndex="0" GridPane.columnSpan="2" GridPane.rowIndex="3">
+                                                    <children>
+                                                        <Label styleClass="field-label" text="Responsable *"/>
+                                                        <TextField fx:id="txtResponsable" accessibleText="Responsable del aula, obligatorio"
+                                                                   minWidth="0.0" promptText="Nombre de la persona a cargo"/>
+                                                    </children>
+                                                </VBox>
+                                            </children>
+                                        </GridPane>
+                                    </children>
+                                </VBox>
+                            </children>
+                        </VBox>
+                    </children>
+                </StackPane>
+            </content>
+        </ScrollPane>
+    </center>
+    <bottom>
+        <HBox alignment="CENTER_LEFT" spacing="12.0" styleClass="action-bar">
+            <padding>
+                <Insets bottom="14.0" left="24.0" right="24.0" top="14.0"/>
+            </padding>
+            <children>
+                <Label fx:id="lblMensaje" maxWidth="Infinity" minWidth="0.0" prefWidth="0.0"
+                       styleClass="status-message" wrapText="true" HBox.hgrow="ALWAYS"/>
+                <!-- La persona 4 conectará onAction mediante estos fx:id. -->
+                <Button fx:id="btnLimpiar" minWidth="96.0" styleClass="secondary-button" text="Limpiar"/>
+                <Button fx:id="btnGuardar" defaultButton="true" minWidth="116.0"
+                        styleClass="primary-button" text="Guardar"/>
+            </children>
+        </HBox>
+    </bottom>
+</BorderPane>
