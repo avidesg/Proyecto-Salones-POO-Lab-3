@@ -9,7 +9,7 @@
         <!-- Conexión a la base de datos -->
         <property name="hibernate.connection.driver_class">com.mysql.cj.jdbc.Driver</property>
 
-        <property name="hibernate.connection.url">jdbc:mysql://localhost:3306/bd_login?useSSL=false&amp;serverTimezone=America/El_Salvador</property>
+        <property name="hibernate.connection.url">jdbc:mysql://localhost:3306/gestion_aulas?useSSL=false&amp;serverTimezone=America/El_Salvador</property>
 
         <property name="hibernate.connection.username">TU_USUARIO_MYSQL</property>
         <property name="hibernate.connection.password">TU_CLAVE_MYSQL</property>
@@ -23,6 +23,10 @@
 
         <!-- Clase que representa la tabla de usuarios -->
         <mapping class="edu.ufg.aulas.proyectoLaboratorio3.entidades.Usuario"/>
+        <mapping class="edu.ufg.aulas.proyectoLaboratorio3.entidades.Aula"/>
+        <mapping class="edu.ufg.aulas.proyectoLaboratorio3.entidades.Planta"/>
+        <mapping class="edu.ufg.aulas.proyectoLaboratorio3.entidades.TipoAula"/>
+        <mapping class="edu.ufg.aulas.proyectoLaboratorio3.entidades.EstadoAula"/>
 
     </session-factory>
 </hibernate-configuration>
