@@ -21,6 +21,19 @@ CREATE TABLE IF NOT EXISTS planta (
     numero INT NOT NULL UNIQUE,
     CONSTRAINT chk_planta_positiva CHECK (numero > 0)
 );
+-- Plantas iniciales
+INSERT IGNORE INTO planta (numero) VALUES
+    (1),
+    (2),
+    (3),
+    (4);
+
+-- Plantas iniciales (no duplica números si se ejecuta nuevamente)
+INSERT IGNORE INTO planta (numero) VALUES
+    (1),
+    (2),
+    (3),
+    (4);
 
 -- Catalogo de tipos de aula
 CREATE TABLE IF NOT EXISTS tipo_aula (
@@ -32,6 +45,19 @@ CREATE TABLE IF NOT EXISTS tipo_aula (
 CREATE TABLE IF NOT EXISTS estado_aula (
     id INT AUTO_INCREMENT PRIMARY KEY,
     nombre VARCHAR(80) NOT NULL UNIQUE
+);
+
+-- Usuario de prueba para verificar el inicio de sesión
+INSERT INTO usuariosistema
+    (Nombre, Apellido, Usuario, Clave, Correo, Roll, Estado)
+SELECT
+    'Prueba', 'Usuario', 'prueba',
+    MD5('Prueba123'),
+    'prueba@ufg.edu.sv', 'ADMIN', 'ACTIVO'
+WHERE NOT EXISTS (
+    SELECT 1
+    FROM usuariosistema
+    WHERE Usuario = 'prueba'
 );
 
 -- Registro principal de aulas
